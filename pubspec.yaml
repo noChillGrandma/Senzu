@@ -70,7 +70,6 @@ flutter:
   assets:
     - assets/
     - assets/meal_icons/
-    - assets/bmi/
     - assets/login_screen/
     - assets/app_launcher_icon/
 
