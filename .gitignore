@@ -51,3 +51,6 @@ elastic-creds
 lib/shared/private_keys.dart
 android/app/google-services.json
 .firebaserc
+lib/firebase_options.dart
+ios/firebase_app_id_file.json
+ios/Runner/GoogleService-Info.plist
