@@ -82,12 +82,12 @@ class _FoodShelfState extends State<FoodShelf> {
         ),
         bottomNavigationBar: BottomAppBar(
           color: Color(0xFF1e1f38),
-        notchMargin: 8.0,
-        shape: CircularNotchedRectangle(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            SizedBox(height: 40,)
+          notchMargin: 8.0,
+          shape: CircularNotchedRectangle(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              SizedBox(height: 40,)
             // _searchButton(FontAwesomeIcons.search, () {}),
             // _barcodeButton(FontAwesomeIcons.barcode, () {}),
           ],

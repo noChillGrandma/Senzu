@@ -602,8 +602,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: 1.0,
                               center: Text("${(carbsPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -620,8 +620,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: carbsPercentage(),
                               center: Text("${(carbsPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -641,8 +641,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: 1.0,
                               center: Text("${(proteinPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -658,8 +658,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: proteinPercentage(),
                               center: Text("${(proteinPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -680,8 +680,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: 1.0,
                               center: Text("${(fatPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -698,8 +698,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: fatPercentage(),
                               center: Text("${(fatPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),

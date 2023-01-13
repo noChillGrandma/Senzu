@@ -92,13 +92,7 @@ class _FoodDetailsState extends State<FoodDetails> {
   final portionSizeController = TextEditingController();
 
   Widget _bottomAction(IconData icon, Function callback) {
-    return InkWell(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Icon(icon, color: Colors.white,)
-        ),
-      onTap: callback,
-    );
+    return Icon(icon, color: Color(0xFF1e1f38));
   }
 
    _caloriesIntake(){
@@ -318,41 +312,55 @@ class _FoodDetailsState extends State<FoodDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: primaryBackgroundColor,
-      appBar: AppBar(
+    return GestureDetector(
+      onVerticalDragDown: (details) {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
         backgroundColor: primaryBackgroundColor,
-        centerTitle: true,
-        title: Text('Nutrition Facts'
-        )
-      ),
-      bottomNavigationBar: BottomAppBar(
-        notchMargin: 8.0,
-        shape: CircularNotchedRectangle(),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            _bottomAction(Icons.cleaning_services_outlined, () {}),
-            SizedBox(width: 150.0),
-          ],
+        appBar: AppBar(
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Icon(Icons.chevron_left,
+              size: 40,
+            )
+          ),
+          backgroundColor: primaryBackgroundColor,
+          centerTitle: true,
+          title: Text('Nutrition Facts'
+          )
         ),
+        bottomNavigationBar: BottomAppBar(
+          color: Color(0xFF1e1f38),
+          notchMargin: 8.0,
+          shape: CircularNotchedRectangle(),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              _bottomAction(Icons.cleaning_services_outlined, () {}),
+              SizedBox(width: 150.0),
+            ],
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: primaryButtonColor,
+          child: Icon(Icons.add),
+          onPressed: () {
+            try {
+              updateTimesAddedCount();
+              saveFoodToMeal();
+              Navigator.of(context).pop();
+            } catch (e) {
+              print(e);
+            }
+          },
+        ),
+        body: _foodDetailsBody(),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: primaryButtonColor,
-        child: Icon(Icons.add),
-        onPressed: () {
-          try {
-            updateTimesAddedCount();
-            saveFoodToMeal();
-            Navigator.of(context).pop();
-          } catch (e) {
-            print(e);
-          }
-        },
-      ),
-      body: _foodDetailsBody(),
     );
   }
 
@@ -407,7 +415,7 @@ class _FoodDetailsState extends State<FoodDetails> {
                         style: notBoldTextOnLabel,
                         decoration: textInputDecoration.copyWith(hintText: 'g', hintStyle: textColor),
                         controller: portionSizeController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                         ],
