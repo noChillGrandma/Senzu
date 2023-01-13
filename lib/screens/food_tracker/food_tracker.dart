@@ -267,6 +267,7 @@ class _FoodOverviewState extends State<FoodOverview> {
           Container(
             // padding: EdgeInsets.fromLTRB(15, 15.0, 15.0, 15.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Column(
                   children: <Widget>[
@@ -831,6 +832,7 @@ Widget _buildNutrientsTotal(BuildContext context, AsyncSnapshot<QuerySnapshot> s
   final potassiumSum = documents.fold(0, (s, n) => s + n['potassium']);
   final vitaminASum = documents.fold(0, (s, n) => s + n['vitaminA']);
   final vitaminCSum = documents.fold(0, (s, n) => s + n['vitaminC']);
+  final vitaminDSum = documents.fold(0, (s, n) => s + n['vitaminD']);
   final calciumSum = documents.fold(0, (s, n) => s + n['calcium']);
   final ironSum = documents.fold(0, (s, n) => s + n['iron']);
   final saturatedFatSum = documents.fold(0, (s, n) => s + n['saturatedFat']);
@@ -933,6 +935,24 @@ Widget _buildNutrientsTotal(BuildContext context, AsyncSnapshot<QuerySnapshot> s
                   ),
                   Text('${vitaminCSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
                   Text('/${vitaminCDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                ]),
+                Row(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Builder(builder: (context){
+                      if (vitaminDSum > vitaminDDailyValue) {
+                        return goodIntakeIcon;
+                      } else {
+                        return lowIntakeIcon;
+                      }
+                    }),
+                  ),
+                  Text('Vitamin D', style: textColor.copyWith(fontSize: 15)),
+                  Expanded(
+                    child: nutrientsDivider
+                  ),
+                  Text('${vitaminDSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${vitaminDDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
                 ]),
                 Row(children: <Widget>[
                   Padding(

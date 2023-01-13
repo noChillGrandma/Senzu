@@ -176,6 +176,11 @@ class _FoodDetailsState extends State<FoodDetails> {
      return vitaminCIntake.toInt();
    }
 
+      _vitaminDIntake(){
+     var vitaminDIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.vitaminDValue;
+     return vitaminDIntake.toInt();
+   }
+
    breakfastCalories(){
      if (widget.breakfastMealAdd != null) {
        var breakfastCalories = _caloriesIntake();
@@ -777,6 +782,7 @@ class _FoodDetailsState extends State<FoodDetails> {
       "potassium": _potassiumIntake(),
       "vitaminA": _vitaminAIntake(),
       "vitaminC": _vitaminCIntake(),
+      "vitaminD": _vitaminDIntake(),
       "weekNo": getWeekNumber(widget.selectedDateSecondStep),
       "month": cleanMonthFormat(widget.selectedDateSecondStep.toString()),
       "year": cleanYearFormat(widget.selectedDateSecondStep.toString()),
