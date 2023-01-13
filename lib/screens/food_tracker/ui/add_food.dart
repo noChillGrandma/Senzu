@@ -306,7 +306,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: totalFatController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),

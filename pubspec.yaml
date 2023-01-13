@@ -27,7 +27,7 @@ dependencies:
   firebase_core: ^2.2.0
   font_awesome_flutter: ^9.0.0
   flutter_svg: ^0.22.0
-  flutter_launcher_icons: ^0.9.0
+  flutter_launcher_icons: ^0.11.0
 
   #H
   http: ^0.13.3
@@ -45,7 +45,7 @@ dependencies:
 
 
 flutter_icons:
-  image_path: "assets/app_launcher_icon/senzu_icon.png" 
+  image_path: "assets/app_launcher_icon/ios_app_icon/senzu_app_icon.png" 
   android: true
   ios: true
 
@@ -72,6 +72,7 @@ flutter:
     - assets/meal_icons/
     - assets/login_screen/
     - assets/app_launcher_icon/
+    - assets/app_launcher_icon/ios_app_icon/senzu_app_icon.png
 
 
   fonts:
