@@ -1030,6 +1030,46 @@ Widget _buildNutrientsTotal(BuildContext context, AsyncSnapshot<QuerySnapshot> s
                   Text('${sodiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
                   Text('/${sodiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
                 ]),
+                Row(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Builder(builder: (context){
+                      if (sodiumSum == 0) {
+                        return lowIntakeIcon;
+                      } if (sodiumSum < sodiumDailyValue) {
+                        return goodIntakeIcon;
+                      } else {
+                        return highIntakeIcon;
+                      }
+                    }),
+                  ),
+                  Text('Magnesium(placeholder)', style: textColor.copyWith(fontSize: 15)),
+                  Expanded(
+                    child: nutrientsDivider
+                  ),
+                  Text('${sodiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${magnesiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                ]),
+                Row(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Builder(builder: (context){
+                      if (sodiumSum == 0) {
+                        return lowIntakeIcon;
+                      } if (sodiumSum < sodiumDailyValue) {
+                        return goodIntakeIcon;
+                      } else {
+                        return highIntakeIcon;
+                      }
+                    }),
+                  ),
+                  Text('Zinc(placeholder)', style: textColor.copyWith(fontSize: 15)),
+                  Expanded(
+                    child: nutrientsDivider
+                  ),
+                  Text('${sodiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${zincDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                ]),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
