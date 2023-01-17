@@ -37,3 +37,26 @@ const proteinDailyValue = 50;
 const saturatedFatDailyValue = 20;
 const addedSugarsDailyValue = 50;
 const cholineDailyValue = 550;
+
+
+
+// TODO: Update daily intake velues
+
+/*
+Calories = 2000 kcal
+Protein = 50 g
+Dietary fiber = 
+Potassium = 2000 mg
+Vitamin A = 800 mcg
+Vitamin C = 80 mg
+Vitamin D = 5 mcg
+Calcium = 800 mg
+Iron = 14 mg
+Saturated Fat = 20 g
+Sodium = 6000 mg
+Carbohydrates = 260 g
+Fat = 70 g
+Magnesium = ? 375 mg
+Zinc = ? 10 mg
+Sugars = ? 90 g
+*/
