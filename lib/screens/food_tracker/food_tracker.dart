@@ -886,6 +886,9 @@ Widget _buildNutrientsTotal(BuildContext context, AsyncSnapshot<QuerySnapshot> s
   final magnesiumSum = documents.fold(0, (s, n) => s + n['magnesium']);
   final zincSum = documents.fold(0, (s, n) => s + n['zinc']);
 
+  // TODO: Adjust the icon indicators according to actual nutritional advice from official sources
+  // TODO: Adjust the icon indicators to weekly stats (for example, if no zinc has been taken today but the weekly stat is good, then display the green icon)
+
   return Container(
     padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 30.0),
     child: Column(
@@ -1038,9 +1041,7 @@ Widget _buildNutrientsTotal(BuildContext context, AsyncSnapshot<QuerySnapshot> s
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Builder(builder: (context){
-                      if (saturatedFatSum == 0) {
-                        return lowIntakeIcon;
-                      } if (saturatedFatSum < saturatedFatDailyValue) {
+                      if (saturatedFatSum == 0 || saturatedFatSum < saturatedFatDailyValue) {
                         return goodIntakeIcon;
                       } else {
                         return highIntakeIcon;
@@ -1078,16 +1079,14 @@ Widget _buildNutrientsTotal(BuildContext context, AsyncSnapshot<QuerySnapshot> s
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Builder(builder: (context){
-                      if (sodiumSum == 0) {
-                        return lowIntakeIcon;
-                      } if (sodiumSum < sodiumDailyValue) {
+                      if (magnesiumSum > magnesiumDailyValue) {
                         return goodIntakeIcon;
                       } else {
-                        return highIntakeIcon;
+                        return lowIntakeIcon;
                       }
                     }),
                   ),
-                  Text('Magnesium(placeholder)', style: textColor.copyWith(fontSize: 15)),
+                  Text('Magnesium', style: textColor.copyWith(fontSize: 15)),
                   Expanded(
                     child: nutrientsDivider
                   ),
@@ -1098,16 +1097,14 @@ Widget _buildNutrientsTotal(BuildContext context, AsyncSnapshot<QuerySnapshot> s
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Builder(builder: (context){
-                      if (sodiumSum == 0) {
-                        return lowIntakeIcon;
-                      } if (sodiumSum < sodiumDailyValue) {
+                      if (zincSum > zincDailyValue) {
                         return goodIntakeIcon;
                       } else {
-                        return highIntakeIcon;
+                        return lowIntakeIcon;
                       }
                     }),
                   ),
-                  Text('Zinc(placeholder)', style: textColor.copyWith(fontSize: 15)),
+                  Text('Zinc', style: textColor.copyWith(fontSize: 15)),
                   Expanded(
                     child: nutrientsDivider
                   ),

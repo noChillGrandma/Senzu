@@ -57,10 +57,10 @@ class _NutrientStatsState extends State<NutrientStats> {
       final saturatedFatSum = documents.fold(0, (s, n) => s + n['saturatedFat'] / 7);
       final sodiumSum = documents.fold(0, (s, n) => s + n['sodium'] / 7);
       final vitaminDSum = documents.fold(0, (s, n) => s + n['vitaminD'] / 7);
-      final zincSum = documents.fold(0, (s, n) => s + n['zinc'] / 7);
-      final magnesiumSum = documents.fold(0, (s, n) => s + n['magnesium'] / 7);
+      // final zincSum = documents.fold(0, (s, n) => s + n['zinc'] / 7);
+      // final magnesiumSum = documents.fold(0, (s, n) => s + n['magnesium'] / 7);
 
-
+      // TODO: ZINC and Magnesium to be added after 17 may 2023
 
 
       return Container(
@@ -154,14 +154,14 @@ class _NutrientStatsState extends State<NutrientStats> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Builder(builder: (context){
-                      if (vitaminASum > vitaminADailyValue) {
+                      if (vitaminDSum > vitaminDDailyValue) {
                         return goodIntakeIcon;
                       } else {
                         return lowIntakeIcon;
                       }
                     }),
                   ),
-                  Text('Vitamin D(Placeholder)', style: textColor.copyWith(fontSize: 15)),
+                  Text('Vitamin D', style: textColor.copyWith(fontSize: 15)),
                   Expanded(
                     child: nutrientsDivider
                   ),
@@ -262,46 +262,46 @@ class _NutrientStatsState extends State<NutrientStats> {
                   Text('${sodiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
                   Text('/${sodiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
                 ]),
-                Row(children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Builder(builder: (context){
-                      if (sodiumSum == 0) {
-                        return lowIntakeIcon;
-                      } if (sodiumSum < sodiumDailyValue) {
-                        return goodIntakeIcon;
-                      } else {
-                        return highIntakeIcon;
-                      }
-                    }),
-                  ),
-                  Text('Zinc (Placeholder)', style: textColor.copyWith(fontSize: 15)),
-                  Expanded(
-                    child: nutrientsDivider
-                  ),
-                  Text('${zincSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
-                  Text('/${zincDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
-                ]),
-                Row(children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Builder(builder: (context){
-                      if (sodiumSum == 0) {
-                        return lowIntakeIcon;
-                      } if (sodiumSum < sodiumDailyValue) {
-                        return goodIntakeIcon;
-                      } else {
-                        return highIntakeIcon;
-                      }
-                    }),
-                  ),
-                  Text('Magnesium (Placeholder)', style: textColor.copyWith(fontSize: 15)),
-                  Expanded(
-                    child: nutrientsDivider
-                  ),
-                  Text('${magnesiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
-                  Text('/${magnesiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
-                ]),
+                // Row(children: <Widget>[
+                //   Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: Builder(builder: (context){
+                //       if (sodiumSum == 0) {
+                //         return lowIntakeIcon;
+                //       } if (sodiumSum < sodiumDailyValue) {
+                //         return goodIntakeIcon;
+                //       } else {
+                //         return highIntakeIcon;
+                //       }
+                //     }),
+                //   ),
+                //   Text('Zinc (Placeholder)', style: textColor.copyWith(fontSize: 15)),
+                //   Expanded(
+                //     child: nutrientsDivider
+                //   ),
+                //   Text('${zincSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                //   Text('/${zincDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                // ]),
+                // Row(children: <Widget>[
+                //   Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: Builder(builder: (context){
+                //       if (sodiumSum == 0) {
+                //         return lowIntakeIcon;
+                //       } if (sodiumSum < sodiumDailyValue) {
+                //         return goodIntakeIcon;
+                //       } else {
+                //         return highIntakeIcon;
+                //       }
+                //     }),
+                //   ),
+                //   Text('Magnesium (Placeholder)', style: textColor.copyWith(fontSize: 15)),
+                //   Expanded(
+                //     child: nutrientsDivider
+                //   ),
+                //   Text('${magnesiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                //   Text('/${magnesiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                // ]),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -350,8 +350,11 @@ class _NutrientStatsState extends State<NutrientStats> {
       final saturatedFatSum = documents.fold(0, (s, n) => s + n['saturatedFat'] / 30);
       final sodiumSum = documents.fold(0, (s, n) => s + n['sodium'] / 30);
       final vitaminDSum = documents.fold(0, (s, n) => s + n['vitaminD'] / 30);
-      final zincSum = documents.fold(0, (s, n) => s + n['zinc'] / 30);
-      final magnesiumSum = documents.fold(0, (s, n) => s + n['magnesium'] / 30);
+      // final zincSum = documents.fold(0, (s, n) => s + n['sodium'] / 30);
+      // final magnesiumSum = documents.fold(0, (s, n) => s + n['sodium'] / 30);
+
+      // TODO: ZINC and Magnesium to be added after 17 may 2023
+
 
       return Container(
         padding: EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 30.0),
@@ -444,14 +447,14 @@ class _NutrientStatsState extends State<NutrientStats> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Builder(builder: (context){
-                      if (vitaminASum > vitaminADailyValue) {
+                      if (vitaminDSum > vitaminDDailyValue) {
                         return goodIntakeIcon;
                       } else {
                         return lowIntakeIcon;
                       }
                     }),
                   ),
-                  Text('Vitamin D(Placeholder)', style: textColor.copyWith(fontSize: 15)),
+                  Text('Vitamin D', style: textColor.copyWith(fontSize: 15)),
                   Expanded(
                     child: nutrientsDivider
                   ),
@@ -552,46 +555,46 @@ class _NutrientStatsState extends State<NutrientStats> {
                   Text('${sodiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
                   Text('/${sodiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
                 ]),
-                Row(children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Builder(builder: (context){
-                      if (sodiumSum == 0) {
-                        return lowIntakeIcon;
-                      } if (sodiumSum < sodiumDailyValue) {
-                        return goodIntakeIcon;
-                      } else {
-                        return highIntakeIcon;
-                      }
-                    }),
-                  ),
-                  Text('Zinc (Placeholder)', style: textColor.copyWith(fontSize: 15)),
-                  Expanded(
-                    child: nutrientsDivider
-                  ),
-                  Text('${zincSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
-                  Text('/${zincDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
-                ]),
-                Row(children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Builder(builder: (context){
-                      if (sodiumSum == 0) {
-                        return lowIntakeIcon;
-                      } if (sodiumSum < sodiumDailyValue) {
-                        return goodIntakeIcon;
-                      } else {
-                        return highIntakeIcon;
-                      }
-                    }),
-                  ),
-                  Text('Magnesium (Placeholder)', style: textColor.copyWith(fontSize: 15)),
-                  Expanded(
-                    child: nutrientsDivider
-                  ),
-                  Text('${magnesiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
-                  Text('/${magnesiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
-                ]),
+                // Row(children: <Widget>[
+                //   Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: Builder(builder: (context){
+                //       if (sodiumSum == 0) {
+                //         return lowIntakeIcon;
+                //       } if (sodiumSum < sodiumDailyValue) {
+                //         return goodIntakeIcon;
+                //       } else {
+                //         return highIntakeIcon;
+                //       }
+                //     }),
+                //   ),
+                //   Text('Zinc (Placeholder)', style: textColor.copyWith(fontSize: 15)),
+                //   Expanded(
+                //     child: nutrientsDivider
+                //   ),
+                //   Text('${zincSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                //   Text('/${zincDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                // ]),
+                // Row(children: <Widget>[
+                //   Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: Builder(builder: (context){
+                //       if (sodiumSum == 0) {
+                //         return lowIntakeIcon;
+                //       } if (sodiumSum < sodiumDailyValue) {
+                //         return goodIntakeIcon;
+                //       } else {
+                //         return highIntakeIcon;
+                //       }
+                //     }),
+                //   ),
+                //   Text('Magnesium (Placeholder)', style: textColor.copyWith(fontSize: 15)),
+                //   Expanded(
+                //     child: nutrientsDivider
+                //   ),
+                //   Text('${magnesiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                //   Text('/${magnesiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                // ]),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
