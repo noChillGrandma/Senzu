@@ -58,6 +58,7 @@ class _AddToDinnerState extends State<AddToDinner> {
         addFoodButton(),
         _dinnerList(),
         _doneButton(),
+        SizedBox(height: 20,),
       ],
     );
   }

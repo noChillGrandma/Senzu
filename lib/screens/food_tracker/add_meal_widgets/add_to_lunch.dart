@@ -58,6 +58,7 @@ class _AddToLunchState extends State<AddToLunch> {
         addFoodButton(),
         _lunchList(),
         _doneButton(),
+        SizedBox(height: 20,),
       ],
     );
   }

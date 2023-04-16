@@ -76,6 +76,7 @@ class _MealDetailsState extends State<MealDetails> {
         addFoodItemToMealButton(),
         _mealFoodItemsList(),
         _addMealFoodItemsButton(),
+        SizedBox(height: 20,),
       ],
     );
   }

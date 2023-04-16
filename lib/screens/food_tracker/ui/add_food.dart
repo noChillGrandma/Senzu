@@ -137,60 +137,65 @@ class _AddFoodState extends State<AddFood> {
   @override
   Widget build(BuildContext context) {
     
-    return Scaffold(
-      backgroundColor: primaryBackgroundColor,
-      appBar: AppBar(
+    return GestureDetector(
+      onVerticalDragDown: (details) {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
         backgroundColor: primaryBackgroundColor,
-        centerTitle: true,
-        title: Text('Add To Your Shelf'),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Color(0xFF1e1f38),
-        notchMargin: 8.0,
-        shape: CircularNotchedRectangle(),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-          children: <Widget>[
-            // _bottomAction(FontAwesomeIcons.smileWink, () {}),
-            // _bottomAction(FontAwesomeIcons.chartPie, () {}),
-            SizedBox(
-              height: 40,
-              width: 150.0),
-            // _bottomAction(FontAwesomeIcons.wallet, () {}),
-
-          ],
+        appBar: AppBar(
+          backgroundColor: primaryBackgroundColor,
+          centerTitle: true,
+          title: Text('Add To Your Shelf'),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        heroTag: "add_food_button",
-        backgroundColor: primaryButtonColor,
-        onPressed: () async {
-          if (_addFoodFormKey.currentState.validate()) {
-            setState(() => loading = true);
-            saveFoodToShelf();
-            saveToFoodDatabase(context);
-            Navigator.of(context).pop();
-            CustomSnackBar(
-                context, const Text('Food item added successfully'));
-          } else {
-            ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('Please fill the required boxes')));
-          }
-        },
-        child: Container(
-          child: Center(
-            child: Builder(
-              builder: (context) {
-                return loading ? loadingWidget : Icon(Icons.add);
-              },
+        bottomNavigationBar: BottomAppBar(
+          color: Color(0xFF1e1f38),
+          notchMargin: 8.0,
+          shape: CircularNotchedRectangle(),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    
+            children: <Widget>[
+              // _bottomAction(FontAwesomeIcons.smileWink, () {}),
+              // _bottomAction(FontAwesomeIcons.chartPie, () {}),
+              SizedBox(
+                height: 40,
+                width: 150.0),
+              // _bottomAction(FontAwesomeIcons.wallet, () {}),
+    
+            ],
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          heroTag: "add_food_button",
+          backgroundColor: primaryButtonColor,
+          onPressed: () async {
+            if (_addFoodFormKey.currentState.validate()) {
+              setState(() => loading = true);
+              saveFoodToShelf();
+              saveToFoodDatabase(context);
+              Navigator.of(context).pop();
+              CustomSnackBar(
+                  context, const Text('Food item added successfully'));
+            } else {
+              ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text('Please fill the required boxes')));
+            }
+          },
+          child: Container(
+            child: Center(
+              child: Builder(
+                builder: (context) {
+                  return loading ? loadingWidget : Icon(Icons.add);
+                },
+              ),
             ),
           ),
         ),
+        body: addFoodForm(),
       ),
-      body: addFoodForm(),
     );
   }
 
@@ -262,7 +267,7 @@ Widget addFoodForm() {
                         },
                         decoration: textInputDecoration.copyWith(hintText: 'g/mL'),
                         controller: servingSizeController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                         ],
@@ -285,7 +290,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'kcal'),
                         controller: caloriesController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -327,7 +332,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: saturatedFatController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -348,7 +353,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: transFatController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -369,7 +374,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'mg'),
                         controller: cholesterolController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -390,7 +395,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'mg'),
                         controller: sodiumController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -411,7 +416,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: totalCarbohydrateController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -432,7 +437,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: dietaryFiberController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -453,7 +458,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: sugarsController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -474,7 +479,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: addedSugarsController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -495,7 +500,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: proteinController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -516,7 +521,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: '%'),
                         controller: calciumController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -537,7 +542,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: '%'),
                         controller: ironController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -558,7 +563,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: '%'),
                         controller: potassiumController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -579,7 +584,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: '%'),
                         controller: vitaminAController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -600,7 +605,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: '%'),
                         controller: vitaminCController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                       ),
                     ),
@@ -623,7 +628,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: vitaminDController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),
@@ -647,7 +652,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: vitaminB6Controller,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),
@@ -671,7 +676,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: folateController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),
@@ -695,7 +700,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: thiaminController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),
@@ -719,7 +724,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: magnesiumController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),
@@ -743,7 +748,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: zincController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),
@@ -767,7 +772,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: phosphorusController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),
@@ -791,7 +796,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: riboflavinController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),
@@ -815,7 +820,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: niacinController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),
@@ -839,7 +844,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: pantothenicAcidController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),
@@ -863,7 +868,7 @@ Widget addFoodForm() {
                           style: textColor,
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: vitaminEController,
-                          keyboardType: TextInputType.number,
+                          keyboardType: TextInputType.numberWithOptions(decimal: true),
                           inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
                         ),
                       ),

@@ -82,12 +82,12 @@ class _FoodShelfState extends State<FoodShelf> {
         ),
         bottomNavigationBar: BottomAppBar(
           color: Color(0xFF1e1f38),
-        notchMargin: 8.0,
-        shape: CircularNotchedRectangle(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            SizedBox(height: 40,)
+          notchMargin: 8.0,
+          shape: CircularNotchedRectangle(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              SizedBox(height: 40,)
             // _searchButton(FontAwesomeIcons.search, () {}),
             // _barcodeButton(FontAwesomeIcons.barcode, () {}),
           ],
@@ -164,24 +164,46 @@ Widget buildFoodList(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot
     var foodName = food.get('foodName');
     var brandName = food.get('brandName');
     var servingSize = food.get('servingSize');
-    var calories = food.get('calories');
-    var totalFat = food.get('totalFat');
-    var saturatedFat = food.get('saturatedFat');
-    var transFat = food.get('transFat');
-    var cholesterol = food.get('cholesterol');
-    var sodium = food.get('sodium');
-    var totalCarbohydrate = food.get('totalCarbohydrate');
-    var dietaryFiber = food.get('dietaryFiber');
-    var sugars = food.get('sugars');
-    var protein = food.get('protein');
-    var calcium = food.get('calcium');
-    var iron = food.get('iron');
-    var potassium = food.get('potassium');
-    var vitaminA = food.get('vitaminA');
-    var vitaminC = food.get('vitaminC');
-    var vitaminD = food.get('vitaminD');
-    var addedSugars = food.get('addedSugars');
-    var timesAdded = food.get('timesAdded');
+    // var calories = food.get('calories');
+    var calories = food.data().toString().contains('calories') ? food.get('calories') : 0;
+    // var totalFat = food.get('totalFat');
+    var totalFat = food.data().toString().contains('totalFat') ? food.get('totalFat') : 0;
+    // var saturatedFat = food.get('saturatedFat');
+    var saturatedFat = food.data().toString().contains('saturatedFat') ? food.get('saturatedFat') : 0;
+    // var transFat = food.get('transFat');
+    var transFat = food.data().toString().contains('transFat') ? food.get('transFat') : 0;
+    // var cholesterol = food.get('cholesterol');
+    var cholesterol = food.data().toString().contains('cholesterol') ? food.get('cholesterol') : 0;
+    // var sodium = food.get('sodium');
+    var sodium = food.data().toString().contains('sodium') ? food.get('sodium') : 0;
+    // var totalCarbohydrate = food.get('totalCarbohydrate');
+    var totalCarbohydrate = food.data().toString().contains('totalCarbohydrate') ? food.get('totalCarbohydrate') : 0;
+    // var dietaryFiber = food.get('dietaryFiber');
+    var dietaryFiber = food.data().toString().contains('dietaryFiber') ? food.get('dietaryFiber') : 0;
+    // var sugars = food.get('sugars');
+    var sugars = food.data().toString().contains('sugars') ? food.get('sugars') : 0;
+    // var protein = food.get('protein');
+    var protein = food.data().toString().contains('protein') ? food.get('protein') : 0;
+    // var calcium = food.get('calcium');
+    var calcium = food.data().toString().contains('calcium') ? food.get('calcium') : 0;
+    // var iron = food.get('iron');
+    var iron = food.data().toString().contains('iron') ? food.get('iron') : 0;
+    // var potassium = food.get('potassium');
+    var potassium = food.data().toString().contains('potassium') ? food.get('potassium') : 0;
+    // var vitaminA = food.get('vitaminA');
+    var vitaminA = food.data().toString().contains('vitaminA') ? food.get('vitaminA') : 0;
+    // var vitaminC = food.get('vitaminC');
+    var vitaminC = food.data().toString().contains('vitaminC') ? food.get('vitaminC') : 0;
+    // var vitaminD = food.get('vitaminD');
+    var vitaminD = food.data().toString().contains('vitaminD') ? food.get('vitaminD') : 0;
+    // var magnesium = food.get('magnesium');
+    var magnesium = food.data().toString().contains('magnesium') ? food.get('magnesium') : 0;
+    // var zinc = food.get('zinc');
+    var zinc = food.data().toString().contains('zinc') ? food.get('zinc') : 0;
+    // var addedSugars = food.get('addedSugars');
+    var addedSugars = food.data().toString().contains('addedSugars') ? food.get('addedSugars') : 0;
+    // var timesAdded = food.get('timesAdded');
+    var timesAdded = food.data().toString().contains('timesAdded') ? food.get('timesAdded') : 0;
     var getFoodId = food.get('foodId');
 
 
@@ -267,6 +289,8 @@ Widget buildFoodList(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot
             vitaminAValue: vitaminA,
             vitaminCValue: vitaminC,
             vitaminDValue: vitaminD,
+            magnesiumValue: magnesium,
+            zincValue: zinc,
             selectedDateSecondStep: widget.selectedDateValue2,
             breakfastMealAdd: widget.breakfastMealValue,
             lunchMealAdd: widget.lunchMealValue,

@@ -55,6 +55,7 @@ class _AddToBreakfastState extends State<AddToBreakfast> {
         addFoodButton(),
         _breakfastList(),
         _doneButton(),
+        SizedBox(height: 20,),
       ],
     );
   }

@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:senzu_app/screens/food_tracker/add_meal_widgets/add_to_breakfast.dart';
 import 'package:senzu_app/screens/food_tracker/add_meal_widgets/add_to_dinner.dart';
@@ -124,10 +126,10 @@ class _FoodOverviewState extends State<FoodOverview> {
           return Center(child: loadingWidget);
             final documents = snapshot.data.docs;
             final totalCaloriesSum = documents.fold(0, (s, n) => s + n['calories']);
-            // final breakfastCaloriesSum = documents.fold(0, (s, n) => s + n['breakfastCalories']);
-            // final lunchCaloriesSum = documents.fold(0, (s, n) => s + n['lunchCalories']);
-            // final snacksCaloriesSum = documents.fold(0, (s, n) => s + n['snacksCalories']);
-            // final dinnerCaloriesSum = documents.fold(0, (s, n) => s + n['dinnerCalories']);
+            final breakfastCaloriesSum = documents.fold(0, (s, n) => s + n['breakfastCalories']);
+            final lunchCaloriesSum = documents.fold(0, (s, n) => s + n['lunchCalories']);
+            final snacksCaloriesSum = documents.fold(0, (s, n) => s + n['snacksCalories']);
+            final dinnerCaloriesSum = documents.fold(0, (s, n) => s + n['dinnerCalories']);
             final carbsSum = documents.fold(0, (s, n) => s + n['totalCarbohydrate']);
             final fatSum = documents.fold(0, (s, n) => s + n['totalFat']);
             final proteinSum = documents.fold(0, (s, n) => s + n['protein']);
@@ -274,7 +276,7 @@ class _FoodOverviewState extends State<FoodOverview> {
                     Row(
                       children: <Widget>[
                         SizedBox(
-                          height: 180,
+                          height: 190,
                           width: 180,
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -334,7 +336,18 @@ class _FoodOverviewState extends State<FoodOverview> {
                                               color: Color(0xFFc5c5c5),
                                               fontWeight: FontWeight.bold, 
                                               fontSize: 20
-                                            ),)
+                                            ),),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text('🔥 $breakfastCaloriesSum kcal',
+                                          style: TextStyle(
+                                              color: Color(0xFFc5c5c5),
+                                              fontWeight: FontWeight.bold, 
+                                              fontSize: 18
+                                            ),),
                                       ],
                                     ),
                                     Padding(
@@ -346,7 +359,7 @@ class _FoodOverviewState extends State<FoodOverview> {
                               ),
                         ),
                         SizedBox(
-                          height: 180,
+                          height: 190,
                           width: 180,
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -409,6 +422,17 @@ class _FoodOverviewState extends State<FoodOverview> {
                                             ),)
                                       ],
                                     ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text('🔥 $lunchCaloriesSum kcal',
+                                          style: TextStyle(
+                                              color: Color(0xFFc5c5c5),
+                                              fontWeight: FontWeight.bold, 
+                                              fontSize: 18
+                                            ),),
+                                      ],
+                                    ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(0,0,0,5),
                                     ),
@@ -422,7 +446,7 @@ class _FoodOverviewState extends State<FoodOverview> {
                     Row(
                       children: <Widget>[
                         SizedBox(
-                          height: 180,
+                          height: 190,
                           width: 180,
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -485,6 +509,17 @@ class _FoodOverviewState extends State<FoodOverview> {
                                             ),)
                                       ],
                                     ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text('🔥 $snacksCaloriesSum kcal',
+                                          style: TextStyle(
+                                              color: Color(0xFFc5c5c5),
+                                              fontWeight: FontWeight.bold, 
+                                              fontSize: 18
+                                            ),),
+                                      ],
+                                    ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(0,0,0,5),
                                     ),
@@ -494,7 +529,7 @@ class _FoodOverviewState extends State<FoodOverview> {
                             ),
                         ),
                         SizedBox(
-                          height: 180,
+                          height: 190,
                           width: 180,
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -557,6 +592,17 @@ class _FoodOverviewState extends State<FoodOverview> {
                                             ),)
                                       ],
                                     ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text('🔥 $dinnerCaloriesSum kcal',
+                                          style: TextStyle(
+                                              color: Color(0xFFc5c5c5),
+                                              fontWeight: FontWeight.bold, 
+                                              fontSize: 18
+                                            ),),
+                                      ],
+                                    ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(0,0,0,5),
                                     ),
@@ -602,8 +648,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: 1.0,
                               center: Text("${(carbsPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -620,8 +666,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: carbsPercentage(),
                               center: Text("${(carbsPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -641,8 +687,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: 1.0,
                               center: Text("${(proteinPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -658,8 +704,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: proteinPercentage(),
                               center: Text("${(proteinPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -680,8 +726,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: 1.0,
                               center: Text("${(fatPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -698,8 +744,8 @@ class _FoodOverviewState extends State<FoodOverview> {
                           children: [
                             CircularPercentIndicator(
                               circularStrokeCap: CircularStrokeCap.round,
-                              radius: 60.0,
-                              lineWidth: 10.0,
+                              radius: 80.0,
+                              lineWidth: 13.0,
                               percent: fatPercentage(),
                               center: Text("${(fatPercentage() * 100).toStringAsFixed(0)}%",
                               style: textColor.copyWith(fontWeight: FontWeight.bold)),
@@ -837,10 +883,11 @@ Widget _buildNutrientsTotal(BuildContext context, AsyncSnapshot<QuerySnapshot> s
   final ironSum = documents.fold(0, (s, n) => s + n['iron']);
   final saturatedFatSum = documents.fold(0, (s, n) => s + n['saturatedFat']);
   final sodiumSum = documents.fold(0, (s, n) => s + n['sodium']);
+  final magnesiumSum = documents.fold(0, (s, n) => s + n['magnesium']);
+  final zincSum = documents.fold(0, (s, n) => s + n['zinc']);
 
-
-
-
+  // TODO: Adjust the icon indicators according to actual nutritional advice from official sources
+  // TODO: Adjust the icon indicators to weekly stats (for example, if no zinc has been taken today but the weekly stat is good, then display the green icon)
 
   return Container(
     padding: EdgeInsets.fromLTRB(30.0, 0, 30.0, 30.0),
@@ -994,9 +1041,7 @@ Widget _buildNutrientsTotal(BuildContext context, AsyncSnapshot<QuerySnapshot> s
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Builder(builder: (context){
-                      if (saturatedFatSum == 0) {
-                        return lowIntakeIcon;
-                      } if (saturatedFatSum < saturatedFatDailyValue) {
+                      if (saturatedFatSum == 0 || saturatedFatSum < saturatedFatDailyValue) {
                         return goodIntakeIcon;
                       } else {
                         return highIntakeIcon;
@@ -1029,6 +1074,42 @@ Widget _buildNutrientsTotal(BuildContext context, AsyncSnapshot<QuerySnapshot> s
                   ),
                   Text('${sodiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
                   Text('/${sodiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                ]),
+                Row(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Builder(builder: (context){
+                      if (magnesiumSum > magnesiumDailyValue) {
+                        return goodIntakeIcon;
+                      } else {
+                        return lowIntakeIcon;
+                      }
+                    }),
+                  ),
+                  Text('Magnesium', style: textColor.copyWith(fontSize: 15)),
+                  Expanded(
+                    child: nutrientsDivider
+                  ),
+                  Text('${magnesiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${magnesiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                ]),
+                Row(children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Builder(builder: (context){
+                      if (zincSum > zincDailyValue) {
+                        return goodIntakeIcon;
+                      } else {
+                        return lowIntakeIcon;
+                      }
+                    }),
+                  ),
+                  Text('Zinc', style: textColor.copyWith(fontSize: 15)),
+                  Expanded(
+                    child: nutrientsDivider
+                  ),
+                  Text('${zincSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${zincDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
                 ]),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
