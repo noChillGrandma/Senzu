@@ -42,5 +42,7 @@ var currentYear = cleanYearFormat(today.toString());
 
 var currentDate = cleanDateFormat();
 
+final lastWeek = currentDate.subtract(Duration(days: 7));
 
+final lastMonth = currentDate.subtract(Duration(days: 30));
 

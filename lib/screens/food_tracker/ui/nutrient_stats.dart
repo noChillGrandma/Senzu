@@ -35,8 +35,7 @@ class _NutrientStatsState extends State<NutrientStats> {
       stream: dbUsersCollection
         .doc(myUID(context))
         .collection('foodEntries')
-        .where("weekNo", isEqualTo: currentWeek)
-        .where("year", isEqualTo: currentYear)
+        .where("dateAdded", isGreaterThan: lastWeek)
         .snapshots(),
       builder: _buildNutrientsTotal,
     );
@@ -57,6 +56,11 @@ class _NutrientStatsState extends State<NutrientStats> {
       final ironSum = documents.fold(0, (s, n) => s + n['iron'] / 7);
       final saturatedFatSum = documents.fold(0, (s, n) => s + n['saturatedFat'] / 7);
       final sodiumSum = documents.fold(0, (s, n) => s + n['sodium'] / 7);
+      final vitaminDSum = documents.fold(0, (s, n) => s + n['vitaminD'] / 7);
+      final zincSum = documents.fold(0, (s, n) => s + n['zinc'] / 7);
+      final magnesiumSum = documents.fold(0, (s, n) => s + n['magnesium'] / 7);
+
+
 
 
       return Container(
@@ -161,8 +165,8 @@ class _NutrientStatsState extends State<NutrientStats> {
                   Expanded(
                     child: nutrientsDivider
                   ),
-                  Text('${vitaminASum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
-                  Text('/${vitaminADailyValue}mcg', style: textColor.copyWith(fontSize: 15)),
+                  Text('${vitaminDSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${vitaminDDailyValue}mcg', style: textColor.copyWith(fontSize: 15)),
                 ]),
                 Row(children: <Widget>[
                   Padding(
@@ -275,8 +279,8 @@ class _NutrientStatsState extends State<NutrientStats> {
                   Expanded(
                     child: nutrientsDivider
                   ),
-                  Text('${sodiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
-                  Text('/${sodiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                  Text('${zincSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${zincDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
                 ]),
                 Row(children: <Widget>[
                   Padding(
@@ -295,8 +299,8 @@ class _NutrientStatsState extends State<NutrientStats> {
                   Expanded(
                     child: nutrientsDivider
                   ),
-                  Text('${sodiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
-                  Text('/${sodiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                  Text('${magnesiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${magnesiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
                 ]),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -324,8 +328,7 @@ class _NutrientStatsState extends State<NutrientStats> {
       stream: dbUsersCollection
         .doc(myUID(context))
         .collection('foodEntries')
-        .where("month", isEqualTo: currentMonth)
-        .where("year", isEqualTo: currentYear)
+        .where("dateAdded", isGreaterThan: lastMonth)
         .snapshots(),
       builder: _buildMonthlyNutrientsTotal,
     );
@@ -346,6 +349,9 @@ class _NutrientStatsState extends State<NutrientStats> {
       final ironSum = documents.fold(0, (s, n) => s + n['iron'] / 30);
       final saturatedFatSum = documents.fold(0, (s, n) => s + n['saturatedFat'] / 30);
       final sodiumSum = documents.fold(0, (s, n) => s + n['sodium'] / 30);
+      final vitaminDSum = documents.fold(0, (s, n) => s + n['vitaminD'] / 30);
+      final zincSum = documents.fold(0, (s, n) => s + n['zinc'] / 30);
+      final magnesiumSum = documents.fold(0, (s, n) => s + n['magnesium'] / 30);
 
       return Container(
         padding: EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 30.0),
@@ -449,8 +455,8 @@ class _NutrientStatsState extends State<NutrientStats> {
                   Expanded(
                     child: nutrientsDivider
                   ),
-                  Text('${vitaminASum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
-                  Text('/${vitaminADailyValue}mcg', style: textColor.copyWith(fontSize: 15)),
+                  Text('${vitaminDSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${vitaminDDailyValue}mcg', style: textColor.copyWith(fontSize: 15)),
                 ]),
                 Row(children: <Widget>[
                   Padding(
@@ -563,8 +569,8 @@ class _NutrientStatsState extends State<NutrientStats> {
                   Expanded(
                     child: nutrientsDivider
                   ),
-                  Text('${sodiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
-                  Text('/${sodiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                  Text('${zincSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${zincDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
                 ]),
                 Row(children: <Widget>[
                   Padding(
@@ -583,8 +589,8 @@ class _NutrientStatsState extends State<NutrientStats> {
                   Expanded(
                     child: nutrientsDivider
                   ),
-                  Text('${sodiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
-                  Text('/${sodiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
+                  Text('${magnesiumSum.toStringAsFixed(0)}', style: textColor.copyWith(fontSize: 15)),
+                  Text('/${magnesiumDailyValue}mg', style: textColor.copyWith(fontSize: 15)),
                 ]),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

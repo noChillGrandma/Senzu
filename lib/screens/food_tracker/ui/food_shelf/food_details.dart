@@ -28,6 +28,8 @@ class FoodDetails extends StatefulWidget {
   final dynamic vitaminAValue;
   final dynamic vitaminCValue;
   final dynamic vitaminDValue;
+  final dynamic magnesiumValue;
+  final dynamic zincValue;
   final DateTime selectedDateSecondStep;
   final String foodIdValue;
   final String breakfastMealAdd;
@@ -69,6 +71,8 @@ class FoodDetails extends StatefulWidget {
     this.dinnerMealAdd, 
     this.timesAddedValue, 
     this.getFoodIdValue, 
+    this.magnesiumValue, 
+    this.zincValue, 
     }) : super(key: key);
 
   @override
@@ -95,85 +99,95 @@ class _FoodDetailsState extends State<FoodDetails> {
     return Icon(icon, color: Color(0xFF1e1f38));
   }
 
-   _caloriesIntake(){
-     var caloriesIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.caloriesValue;
-     return caloriesIntake.toInt();
-   }
+  _caloriesIntake(){
+    var caloriesIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.caloriesValue;
+    return caloriesIntake.toInt();
+  }
    
-   _totalFatIntake(){
-     var totalFatIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.totalFatValue;
-     return totalFatIntake.toInt();
-   }
+  _totalFatIntake(){
+    var totalFatIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.totalFatValue;
+    return totalFatIntake.toInt();
+  }
 
-   _saturatedFatIntake(){
-     var saturatedFatIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.saturatedFatValue;
-     return saturatedFatIntake.toInt();
-   }
+  _saturatedFatIntake(){
+    var saturatedFatIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.saturatedFatValue;
+    return saturatedFatIntake.toInt();
+  }
 
-   _transFatIntake(){
-     var transFatIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.transFatValue;
-     return transFatIntake.toInt();
-   }
+  _transFatIntake(){
+    var transFatIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.transFatValue;
+    return transFatIntake.toInt();
+  }
 
-   _cholesterolIntake(){
-     var cholesterolIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.cholesterolValue;
-     return cholesterolIntake.toInt();
-   }
+  _cholesterolIntake(){
+    var cholesterolIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.cholesterolValue;
+    return cholesterolIntake.toInt();
+  }
 
-   _sodiumIntake(){
-     var sodiumIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.sodiumValue;
-     return sodiumIntake.toInt();
-   }
+  _sodiumIntake(){
+    var sodiumIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.sodiumValue;
+    return sodiumIntake.toInt();
+  }
 
-   _totalCarbohydrateIntake(){
-     var totalCarbohydrateIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.totalCarbohydrateValue;
-     return totalCarbohydrateIntake.toInt();
-   }
+  _totalCarbohydrateIntake(){
+    var totalCarbohydrateIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.totalCarbohydrateValue;
+    return totalCarbohydrateIntake.toInt();
+  }
 
-   _dietaryFiberIntake(){
-     var dietaryFiberIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.dietaryFiberValue;
-     return dietaryFiberIntake.toInt();
-   }
+  _dietaryFiberIntake(){
+    var dietaryFiberIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.dietaryFiberValue;
+    return dietaryFiberIntake.toInt();
+  }
 
-   _sugarsIntake(){
-     var sugarsIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.sugarsValue;
-     return sugarsIntake.toInt();
-   }
+  _sugarsIntake(){
+    var sugarsIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.sugarsValue;
+    return sugarsIntake.toInt();
+  }
 
-   _proteinIntake(){
-     var proteinIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.proteinValue;
-     return proteinIntake.toInt();
-   }
+  _proteinIntake(){
+    var proteinIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.proteinValue;
+    return proteinIntake.toInt();
+  }
 
-   _calciumIntake(){
-     var calciumIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.calciumValue;
-     return calciumIntake.toInt();
-   }
+  _calciumIntake(){
+    var calciumIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.calciumValue;
+    return calciumIntake.toInt();
+  }
 
-   _ironIntake(){
-     var ironIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.ironValue;
-     return ironIntake.toInt();
-   }
+  _ironIntake(){
+    var ironIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.ironValue;
+    return ironIntake.toInt();
+  }
 
-   _potassiumIntake(){
-     var potassiumIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.potassiumValue;
-     return potassiumIntake.toInt();
-   }
+  _potassiumIntake(){
+    var potassiumIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.potassiumValue;
+    return potassiumIntake.toInt();
+  }
 
-   _vitaminAIntake(){
-     var vitaminAIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.vitaminAValue;
-     return vitaminAIntake.toInt();
-   }
+  _vitaminAIntake(){
+    var vitaminAIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.vitaminAValue;
+    return vitaminAIntake.toInt();
+  }
 
-   _vitaminCIntake(){
-     var vitaminCIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.vitaminCValue;
-     return vitaminCIntake.toInt();
-   }
+  _vitaminCIntake(){
+    var vitaminCIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.vitaminCValue;
+    return vitaminCIntake.toInt();
+  }
 
-      _vitaminDIntake(){
-     var vitaminDIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.vitaminDValue;
-     return vitaminDIntake.toInt();
-   }
+  _vitaminDIntake(){
+    var vitaminDIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.vitaminDValue;
+    return vitaminDIntake.toInt();
+  }
+
+  _magnesiumIntake(){
+    var magnesiumIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.magnesiumValue;
+    return magnesiumIntake.toInt();
+  }
+
+  _zincIntake(){
+    var zincIntake = (int.parse(portionSizeController.text) / widget.servingSizeValue) * widget.zincValue;
+    return zincIntake.toInt();
+  }
 
    breakfastCalories(){
      if (widget.breakfastMealAdd != null) {
@@ -791,6 +805,8 @@ class _FoodDetailsState extends State<FoodDetails> {
       "vitaminA": _vitaminAIntake(),
       "vitaminC": _vitaminCIntake(),
       "vitaminD": _vitaminDIntake(),
+      "magnesium": _magnesiumIntake(),
+      "zinc": _zincIntake(),
       "weekNo": getWeekNumber(widget.selectedDateSecondStep),
       "month": cleanMonthFormat(widget.selectedDateSecondStep.toString()),
       "year": cleanYearFormat(widget.selectedDateSecondStep.toString()),

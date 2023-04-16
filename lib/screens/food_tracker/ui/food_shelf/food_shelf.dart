@@ -180,6 +180,8 @@ Widget buildFoodList(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot
     var vitaminA = food.get('vitaminA');
     var vitaminC = food.get('vitaminC');
     var vitaminD = food.get('vitaminD');
+    var magnesium = food.get('magnesium');
+    var zinc = food.get('zinc');
     var addedSugars = food.get('addedSugars');
     var timesAdded = food.get('timesAdded');
     var getFoodId = food.get('foodId');
@@ -267,6 +269,8 @@ Widget buildFoodList(BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot
             vitaminAValue: vitaminA,
             vitaminCValue: vitaminC,
             vitaminDValue: vitaminD,
+            magnesiumValue: magnesium,
+            zincValue: zinc,
             selectedDateSecondStep: widget.selectedDateValue2,
             breakfastMealAdd: widget.breakfastMealValue,
             lunchMealAdd: widget.lunchMealValue,
