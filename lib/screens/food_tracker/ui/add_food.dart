@@ -172,7 +172,9 @@ class _AddFoodState extends State<AddFood> {
           heroTag: "add_food_button",
           backgroundColor: primaryButtonColor,
           onPressed: () async {
-            if (_addFoodFormKey.currentState.validate()) {
+            // print(saturatedFatController.text.replaceAll(',', '.'));
+            try {
+              if (_addFoodFormKey.currentState.validate()) {
               setState(() => loading = true);
               saveFoodToShelf();
               saveToFoodDatabase(context);
@@ -183,6 +185,13 @@ class _AddFoodState extends State<AddFood> {
               ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text('Please fill the required boxes')));
             }
+              
+            } catch (e) {
+              print(e.message);
+              
+            }
+
+            
           },
           child: Container(
             child: Center(
@@ -225,7 +234,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(
                           hintText: 'Food Name'),
                         controller: foodNameController,
-                        keyboardType: TextInputType.name,
+                        keyboardType: TextInputType.text,
                       ),
                     ),
                   ],
@@ -241,7 +250,7 @@ Widget addFoodForm() {
                         style: textColor,
                         decoration: textInputDecoration.copyWith(hintText: 'Brand / Category'),
                         controller: brandNameController,
-                        keyboardType: TextInputType.name,
+                        keyboardType: TextInputType.text,
                       ),
                     ),
                   ],
@@ -291,7 +300,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'kcal'),
                         controller: caloriesController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -312,7 +321,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: totalFatController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -333,7 +342,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: saturatedFatController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -354,7 +363,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: transFatController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -375,7 +384,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'mg'),
                         controller: cholesterolController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -386,7 +395,7 @@ Widget addFoodForm() {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Sodium',
+                    Text('Sodium/Salt',
                       style: textColor.copyWith(fontSize: 18),
                       ),
                     SizedBox(
@@ -396,7 +405,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'mg'),
                         controller: sodiumController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -417,7 +426,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: totalCarbohydrateController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -438,7 +447,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: dietaryFiberController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -459,7 +468,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: sugarsController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -480,7 +489,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: addedSugarsController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -501,7 +510,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: 'g'),
                         controller: proteinController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -512,7 +521,7 @@ Widget addFoodForm() {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Calcium (100% = 1300mg)*',
+                    Text('Calcium (100% = 800mg)*',
                       style: textColor.copyWith(fontSize: 18),
                       ),
                     SizedBox(
@@ -522,7 +531,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: '%'),
                         controller: calciumController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -533,7 +542,7 @@ Widget addFoodForm() {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Iron (100% = 18mg)*',
+                    Text('Iron (100% = 9mg)*',
                       style: textColor.copyWith(fontSize: 18),
                       ),
                     SizedBox(
@@ -543,7 +552,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: '%'),
                         controller: ironController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -554,7 +563,7 @@ Widget addFoodForm() {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Potassium (100% = 4700mg)',
+                    Text('Potassium (100% = 3500mg)',
                       style: textColor.copyWith(fontSize: 18),
                       ),
                     SizedBox(
@@ -564,7 +573,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: '%'),
                         controller: potassiumController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -575,7 +584,7 @@ Widget addFoodForm() {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Vitamin A (100% = 1500mcg)*',
+                    Text('Vitamin A (100% = 900mcg)*',
                       style: textColor.copyWith(fontSize: 18),
                       ),
                     SizedBox(
@@ -585,7 +594,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: '%'),
                         controller: vitaminAController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -596,7 +605,7 @@ Widget addFoodForm() {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('Vitamin C (100% = 60mg)*',
+                    Text('Vitamin C (100% = 75mg)*',
                       style: textColor.copyWith(fontSize: 18),
                       ),
                     SizedBox(
@@ -606,7 +615,7 @@ Widget addFoodForm() {
                         decoration: textInputDecoration.copyWith(hintText: '%'),
                         controller: vitaminCController,
                         keyboardType: TextInputType.numberWithOptions(decimal: true),
-                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                        inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                       ),
                     ),
                   ],
@@ -619,7 +628,7 @@ Widget addFoodForm() {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('Vitamin D (100% = 15mcg)*',
+                      Text('Vitamin D (100% = 10mcg)*',
                         style: textColor.copyWith(fontSize: 18),
                         ),
                       SizedBox(
@@ -629,7 +638,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: vitaminDController,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -653,7 +662,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: vitaminB6Controller,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -677,7 +686,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: folateController,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -701,7 +710,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: thiaminController,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -715,7 +724,7 @@ Widget addFoodForm() {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('Magnesium (100% = 420mg)*',
+                      Text('Magnesium (100% = 350mg)*',
                         style: textColor.copyWith(fontSize: 18),
                         ),
                       SizedBox(
@@ -725,7 +734,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: magnesiumController,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -739,7 +748,7 @@ Widget addFoodForm() {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text('Zinc (100% = 11mg)*',
+                      Text('Zinc (100% = 9mg)*',
                         style: textColor.copyWith(fontSize: 18),
                         ),
                       SizedBox(
@@ -749,7 +758,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: zincController,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -773,7 +782,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: phosphorusController,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -797,7 +806,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: riboflavinController,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -821,7 +830,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: niacinController,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -845,7 +854,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: pantothenicAcidController,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -869,7 +878,7 @@ Widget addFoodForm() {
                           decoration: textInputDecoration.copyWith(hintText: '%'),
                           controller: vitaminEController,
                           keyboardType: TextInputType.numberWithOptions(decimal: true),
-                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[.0-9]"))) ],
+                          inputFormatters: [ FilteringTextInputFormatter.allow((RegExp("[,.0-9]"))) ],
                         ),
                       ),
                     ],
@@ -1091,82 +1100,82 @@ Widget addFoodForm() {
 
 
    _ironPercentage(){
-     var ironPercentage = (double.parse(ironController.text) / 100) * ironDailyValue;
+     var ironPercentage = (double.parse(ironController.text.replaceAll(',', '.')) / 100) * ironDailyValue;
      return ironPercentage.toStringAsFixed(2);
    }
 
    _calciumPercentage(){
-     var calciumPercentage = (double.parse(calciumController.text) / 100) * calciumDailyValue;
+     var calciumPercentage = (double.parse(calciumController.text.replaceAll(',', '.')) / 100) * calciumDailyValue;
      return calciumPercentage.toStringAsFixed(2);
    }
 
    _potassiumPercentage(){
-     var potassiumPercentage = (double.parse(potassiumController.text) / 100) * potassiumDailyValue;
+     var potassiumPercentage = (double.parse(potassiumController.text.replaceAll(',', '.')) / 100) * potassiumDailyValue;
      return potassiumPercentage.toStringAsFixed(2);
    }
 
    _vitaminAPercentage(){
-     var vitaminAPercentage = (double.parse(vitaminAController.text) / 100) * vitaminADailyValue;
+     var vitaminAPercentage = (double.parse(vitaminAController.text.replaceAll(',', '.')) / 100) * vitaminADailyValue;
      return vitaminAPercentage.toStringAsFixed(2);
    }
 
    _vitaminCPercentage(){
-     var vitaminCPercentage = (double.parse(vitaminCController.text) / 100) * vitaminCDailyValue;
+     var vitaminCPercentage = (double.parse(vitaminCController.text.replaceAll(',', '.')) / 100) * vitaminCDailyValue;
      return vitaminCPercentage.toStringAsFixed(2);
    }
 
    _vitaminDPercentage(){
-     var vitaminDPercentage = (double.parse(vitaminDController.text) / 100) * vitaminDDailyValue;
+     var vitaminDPercentage = (double.parse(vitaminDController.text.replaceAll(',', '.')) / 100) * vitaminDDailyValue;
      return vitaminDPercentage.toStringAsFixed(2);
    }
 
    _vitaminB6Percentage(){
-     var vitaminB6Percentage = (double.parse(vitaminB6Controller.text) / 100) * vitaminB6DailyValue;
+     var vitaminB6Percentage = (double.parse(vitaminB6Controller.text.replaceAll(',', '.')) / 100) * vitaminB6DailyValue;
      return vitaminB6Percentage.toStringAsFixed(2);
    }
    
    _folatePercentage(){
-     var folatePercentage = (double.parse(folateController.text) / 100) * folateDailyValue;
+     var folatePercentage = (double.parse(folateController.text.replaceAll(',', '.')) / 100) * folateDailyValue;
      return folatePercentage.toStringAsFixed(2);
    }
 
     _thiaminPercentage(){
-    var thiaminPercentage = (double.parse(thiaminController.text) / 100) * thiaminDailyValue;
+    var thiaminPercentage = (double.parse(thiaminController.text.replaceAll(',', '.')) / 100) * thiaminDailyValue;
     return thiaminPercentage.toStringAsFixed(2);
   }
 
    _magnesiumPercentage(){
-     var magnesiumPercentage = (double.parse(magnesiumController.text) / 100) * magnesiumDailyValue;
+     var magnesiumPercentage = (double.parse(magnesiumController.text.replaceAll(',', '.')) / 100) * magnesiumDailyValue;
      return magnesiumPercentage.toStringAsFixed(2);
    }
 
    _zincPercentage(){
-     var zincPercentage = (double.parse(zincController.text) / 100) * zincDailyValue;
+     var zincPercentage = (double.parse(zincController.text.replaceAll(',', '.')) / 100) * zincDailyValue;
      return zincPercentage.toStringAsFixed(2);
    }
 
    _phosphorusPercentage(){
-     var phosphorusPercentage = (double.parse(phosphorusController.text) / 100) * phosphorusDailyValue;
+     var phosphorusPercentage = (double.parse(phosphorusController.text.replaceAll(',', '.')) / 100) * phosphorusDailyValue;
      return phosphorusPercentage.toStringAsFixed(2);
    }
 
    _riboflavinPercentage(){
-     var riboflavinPercentage = (double.parse(riboflavinController.text) / 100) * riboflavinDailyValue;
+     var riboflavinPercentage = (double.parse(riboflavinController.text.replaceAll(',', '.')) / 100) * riboflavinDailyValue;
      return riboflavinPercentage.toStringAsFixed(2);
    }
 
    _niacinPercentage(){
-     var niacinPercentage = (double.parse(niacinController.text) / 100) * niacinDailyValue;
+     var niacinPercentage = (double.parse(niacinController.text.replaceAll(',', '.')) / 100) * niacinDailyValue;
      return niacinPercentage.toStringAsFixed(2);
    }
 
    _pantothenicAcidPercentage(){
-     var pantothenicAcidPercentage = (double.parse(pantothenicAcidController.text) / 100) * pantothenicAcidDailyValue;
+     var pantothenicAcidPercentage = (double.parse(pantothenicAcidController.text.replaceAll(',', '.')) / 100) * pantothenicAcidDailyValue;
      return pantothenicAcidPercentage.toStringAsFixed(2);
    }
 
    _vitaminEPercentage(){
-     var vitaminEPercentage = (double.parse(vitaminEController.text) / 100) * vitaminEDailyValue;
+     var vitaminEPercentage = (double.parse(vitaminEController.text.replaceAll(',', '.')) / 100) * vitaminEDailyValue;
      return vitaminEPercentage.toStringAsFixed(2);
    }
 
@@ -1183,17 +1192,17 @@ Widget addFoodForm() {
       "foodName": foodNameController.text,
       "brandName": brandNameController.text,
       "servingSize": servingSizeController.text.isNotEmpty ? double.parse(servingSizeController.text) : 0,
-      "calories": caloriesController.text.isNotEmpty ? double.parse(caloriesController.text) : 0,
-      "totalFat": totalFatController.text.isNotEmpty ? double.parse(totalFatController.text) : 0,
-      "saturatedFat": saturatedFatController.text.isNotEmpty ? double.parse(saturatedFatController.text) : 0,
-      "transFat": transFatController.text.isNotEmpty ? double.parse(transFatController.text) : 0,
-      "cholesterol": cholesterolController.text.isNotEmpty ? double.parse(cholesterolController.text) : 0,
-      "sodium": sodiumController.text.isNotEmpty ? double.parse(sodiumController.text) : 0,
-      "totalCarbohydrate": totalCarbohydrateController.text.isNotEmpty ? double.parse(totalCarbohydrateController.text) : 0,
-      "dietaryFiber": dietaryFiberController.text.isNotEmpty ? double.parse(dietaryFiberController.text) : 0,
-      "sugars": sugarsController.text.isNotEmpty ? double.parse(sugarsController.text) : 0,
-      "addedSugars": addedSugarsController.text.isNotEmpty ? double.parse(addedSugarsController.text) : 0,
-      "protein": proteinController.text.isNotEmpty ? double.parse(proteinController.text) : 0,
+      "calories": caloriesController.text.isNotEmpty ? double.parse(caloriesController.text.replaceAll(',', '.')) : 0,
+      "totalFat": totalFatController.text.isNotEmpty ? double.parse(totalFatController.text.replaceAll(',', '.')) : 0,
+      "saturatedFat": saturatedFatController.text.isNotEmpty ? double.parse(saturatedFatController.text.replaceAll(',', '.')) : 0,
+      "transFat": transFatController.text.isNotEmpty ? double.parse(transFatController.text.replaceAll(',', '.')) : 0,
+      "cholesterol": cholesterolController.text.isNotEmpty ? double.parse(cholesterolController.text.replaceAll(',', '.')) : 0,
+      "sodium": sodiumController.text.isNotEmpty ? double.parse(sodiumController.text.replaceAll(',', '.')) : 0,
+      "totalCarbohydrate": totalCarbohydrateController.text.isNotEmpty ? double.parse(totalCarbohydrateController.text.replaceAll(',', '.')) : 0,
+      "dietaryFiber": dietaryFiberController.text.isNotEmpty ? double.parse(dietaryFiberController.text.replaceAll(',', '.')) : 0,
+      "sugars": sugarsController.text.isNotEmpty ? double.parse(sugarsController.text.replaceAll(',', '.')) : 0,
+      "addedSugars": addedSugarsController.text.isNotEmpty ? double.parse(addedSugarsController.text.replaceAll(',', '.')) : 0,
+      "protein": proteinController.text.isNotEmpty ? double.parse(proteinController.text.replaceAll(',', '.')) : 0,
       "vitaminD": vitaminDController.text.isNotEmpty ? double.parse(_vitaminDPercentage()) : 0,
       "calcium": calciumController.text.isNotEmpty ? double.parse(_calciumPercentage()) : 0,
       "iron": ironController.text.isNotEmpty ? double.parse(_ironPercentage()) : 0,
@@ -1223,21 +1232,21 @@ Widget addFoodForm() {
       "foodName": foodNameController.text,
       "brandName": brandNameController.text,
       "servingSize": servingSizeController.text.isNotEmpty ? double.parse(servingSizeController.text) : 0,
-      "calories": caloriesController.text.isNotEmpty ? double.parse(caloriesController.text) : 0,
-      "totalFat": totalFatController.text.isNotEmpty ? double.parse(totalFatController.text) : 0,
-      "saturatedFat": saturatedFatController.text.isNotEmpty ? double.parse(saturatedFatController.text) : 0,
-      "transFat": transFatController.text.isNotEmpty ? double.parse(transFatController.text) : 0,
-      "cholesterol": cholesterolController.text.isNotEmpty ? double.parse(cholesterolController.text) : 0,
-      "sodium": sodiumController.text.isNotEmpty ? double.parse(sodiumController.text) : 0,
-      "totalCarbohydrate": totalCarbohydrateController.text.isNotEmpty ? double.parse(totalCarbohydrateController.text) : 0,
-      "dietaryFiber": dietaryFiberController.text.isNotEmpty ? double.parse(dietaryFiberController.text) : 0,
-      "sugars": sugarsController.text.isNotEmpty ? double.parse(sugarsController.text) : 0,
-      "addedSugars": addedSugarsController.text.isNotEmpty ? double.parse(addedSugarsController.text) : 0,
-      "protein": proteinController.text.isNotEmpty ? double.parse(proteinController.text) : 0,
-      "vitaminD": vitaminDController.text.isNotEmpty ? double.parse(vitaminDController.text) : 0,
+      "calories": caloriesController.text.isNotEmpty ? double.parse(caloriesController.text.replaceAll(',', '.')) : 0,
+      "totalFat": totalFatController.text.isNotEmpty ? double.parse(totalFatController.text.replaceAll(',', '.')) : 0,
+      "saturatedFat": saturatedFatController.text.isNotEmpty ? double.parse(saturatedFatController.text.replaceAll(',', '.')) : 0,
+      "transFat": transFatController.text.isNotEmpty ? double.parse(transFatController.text.replaceAll(',', '.')) : 0,
+      "cholesterol": cholesterolController.text.isNotEmpty ? double.parse(cholesterolController.text.replaceAll(',', '.')) : 0,
+      "sodium": sodiumController.text.isNotEmpty ? double.parse(sodiumController.text.replaceAll(',', '.')) : 0,
+      "totalCarbohydrate": totalCarbohydrateController.text.isNotEmpty ? double.parse(totalCarbohydrateController.text.replaceAll(',', '.')) : 0,
+      "dietaryFiber": dietaryFiberController.text.isNotEmpty ? double.parse(dietaryFiberController.text.replaceAll(',', '.')) : 0,
+      "sugars": sugarsController.text.isNotEmpty ? double.parse(sugarsController.text.replaceAll(',', '.')) : 0,
+      "addedSugars": addedSugarsController.text.isNotEmpty ? double.parse(addedSugarsController.text.replaceAll(',', '.')) : 0,
+      "protein": proteinController.text.isNotEmpty ? double.parse(proteinController.text.replaceAll(',', '.')) : 0,
+      "vitaminD": vitaminDController.text.isNotEmpty ? double.parse(vitaminDController.text.replaceAll(',', '.')) : 0,
       "calcium": calciumController.text.isNotEmpty ? double.parse(_calciumPercentage()) : 0,
       "iron": ironController.text.isNotEmpty ? double.parse(_ironPercentage()) : 0,
-      "potassium": potassiumController.text.isNotEmpty ? double.parse(potassiumController.text) : 0,
+      "potassium": potassiumController.text.isNotEmpty ? double.parse(_potassiumPercentage()) : 0,
       "vitaminA": vitaminAController.text.isNotEmpty ? double.parse(_vitaminAPercentage()) : 0,
       "vitaminC": vitaminCController.text.isNotEmpty ? double.parse(_vitaminCPercentage()) : 0,
       "vitaminB6": vitaminB6Controller.text.isNotEmpty ? double.parse(_vitaminB6Percentage()) : 0,
